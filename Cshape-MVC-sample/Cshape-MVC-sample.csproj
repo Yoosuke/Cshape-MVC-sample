@@ -5,4 +5,10 @@
     <RootNamespace>Cshape_MVC_sample</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Views\Hello\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Hello\" />
+  </ItemGroup>
 </Project>

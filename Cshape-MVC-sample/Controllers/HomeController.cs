@@ -20,7 +20,8 @@ namespace Cshape_MVC_sample.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(); //Viewsフォルダに用意されたcshtmlファイルを元にクライアントへ返送内容を生成する
+            //Viewsフォルダ内にあるコントローラー名フォルダからアクション名.cshtmlファイルを読み込む仕様になっている
         }
 
         public IActionResult Privacy()
@@ -31,7 +32,7 @@ namespace Cshape_MVC_sample.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });//例外処理 Viewメソッドの戻り値を返す。
         }
     }
 }
