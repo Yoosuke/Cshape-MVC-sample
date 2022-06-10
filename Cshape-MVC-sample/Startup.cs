@@ -15,12 +15,12 @@ namespace Cshape_MVC_sample
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            Configuration = configuration; //アプリケーションの設定情報を管理するクラス
         }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // ここで、サービスにViewを使ったControllerを追加する
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
@@ -31,26 +31,28 @@ namespace Cshape_MVC_sample
         {
             if (env.IsDevelopment())
             {
+                //開発モード 例外処理が発生したら例外を表示
                 app.UseDeveloperExceptionPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                //リリースモード
+                app.UseHsts(); // Strict-Transport-Securityヘッダーを追加するもので、これによりWebブラウザーにHTTPSを用いて通信をするように指示してます。クライアントがアクセスしたらなるべくHTTPSでアクセスするようにしている所。
             }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseHttpsRedirection(); //HTTPをHTTPSにリダイレクトする
+            app.UseStaticFiles(); // 静的ファイルの利用を可能にする
 
-            app.UseRouting();
+            app.UseRouting(); //ルーティングの機能を使う
 
-            app.UseAuthorization();
+            app.UseAuthorization(); //認証機能を使う
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
+                //エンドポイントとは、最後に読み込みするポイント、これ以降は読み込まれないです。最後に呼び出す処理です。という所。ミドルウェアの読み込みはこのエンドポイント前に書かないと読まれない
+                endpoints.MapControllerRoute(　//MapControllerRouteはnameにルート名、patternにテンプレートを記述するようになっている。
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}"); //コントローラー名/アクション名/id値(省略可）
             });
         }
     }
