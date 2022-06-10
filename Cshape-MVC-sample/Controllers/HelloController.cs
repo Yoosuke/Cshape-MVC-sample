@@ -19,9 +19,9 @@ namespace Cshape_MVC_sample.Controllers
 
         //POST :
         [HttpPost]
-        public IActionResult Form()
+        public IActionResult Form(string msg)
         {
-            ViewData["Message"] = Request.Form["msg"];
+            ViewData["Message"] = msg;
             return View("Index");
         }
     }
