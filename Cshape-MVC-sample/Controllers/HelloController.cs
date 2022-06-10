@@ -21,8 +21,10 @@ namespace Cshape_MVC_sample.Controllers
 
 
         // GET: /<controller>/
-        public IActionResult Index()
+        [Route("Hello/{id?}/{name?}")]
+        public IActionResult Index(int id, string name)
         {
+            ViewData["QueryMessage"] = "id=" + id + ", name=" + name;
             ViewData["Message"] = "Hello! this is sample message!";
             ViewData["name"] = "";
             ViewData["mail"] = "";
