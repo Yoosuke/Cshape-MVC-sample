@@ -23,6 +23,7 @@ namespace Cshape_MVC_sample
         // ここで、サービスにViewを使ったControllerを追加する
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession(); //Sessionサービスを追加
             services.AddControllersWithViews();
         }
 
@@ -46,6 +47,8 @@ namespace Cshape_MVC_sample
             app.UseRouting(); //ルーティングの機能を使う
 
             app.UseAuthorization(); //認証機能を使う
+
+            app.UseSession(); // Sessionを利用する為にアプリケーションの設定に加える
 
             app.UseEndpoints(endpoints =>
             {
