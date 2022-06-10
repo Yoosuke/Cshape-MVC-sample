@@ -14,14 +14,20 @@ namespace Cshape_MVC_sample.Controllers
         public IActionResult Index()
         {
             ViewData["Message"] = "Hello! this is sample message!";
+            ViewData["name"] = "";
+            ViewData["mail"] = "";
+            ViewData["prof"] = "";
             return View();
         }
 
         //POST :
         [HttpPost]
-        public IActionResult Form(string msg)
+        public IActionResult Form(string msg, string name, string mail, string prof)
         {
-            ViewData["Message"] = msg;
+            ViewData["name"] = name;
+            ViewData["mail"] = mail;
+            ViewData["prof"] = prof;
+            ViewData["Message"] = msg + "," + ViewData["name"] + "," + ViewData["mail"] + "," + ViewData["prof"];
             return View("Index");
         }
     }

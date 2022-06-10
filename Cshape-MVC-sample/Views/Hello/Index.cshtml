@@ -1,5 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Index/Hello";
+    var name = ViewData["name"];
+    var mail = ViewData["mail"];
+    var prof = ViewData["prof"];
 }
 
 <div class="text-left">
@@ -8,8 +11,22 @@
     <form method="post" asp-controller="Hello" asp-action="Form">
         <div class="form-group">
             <label for="msg">Message</label>
-            <input type="text" name="msg" id="msg" class="form-group"/>
+            <input type="text" name="msg" id="msg" class="form-group" />
         </div>
+
+        <div class="form-group">
+            <label asp-for="@name">@name</label>
+            <input asp-for="@name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@mail">@mail</label>
+            <input asp-for="@mail" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@prof">@prof</label>
+            <input asp-for="@prof" class="form-control" />
+        </div>
+
         <div class="form-group">
             <input type="submit" class="btn btn-primary" />
         </div>
