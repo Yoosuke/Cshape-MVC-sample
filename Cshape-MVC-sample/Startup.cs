@@ -23,7 +23,13 @@ namespace Cshape_MVC_sample
         // ここで、サービスにViewを使ったControllerを追加する
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSession(); //Sessionサービスを追加
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = "接続時間";//session id を保管する名前
+                options.IdleTimeout = TimeSpan.FromMinutes(1); // どれくらいの時間保管するか
+                options.Cookie.IsEssential = false; // Session Cokieを必須にするか否か true or false
+
+            }); //Sessionサービスを追加
             services.AddControllersWithViews();
         }
 
