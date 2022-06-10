@@ -10,6 +10,16 @@ namespace Cshape_MVC_sample.Controllers
 {
     public class HelloController : Controller
     {
+        public List<string> list;
+
+        public HelloController()
+        {
+            list = new List<string>();
+            list.Add("AM");
+            list.Add("PM");
+        }
+
+
         // GET: /<controller>/
         public IActionResult Index()
         {
@@ -17,6 +27,8 @@ namespace Cshape_MVC_sample.Controllers
             ViewData["name"] = "";
             ViewData["mail"] = "";
             ViewData["prof"] = "";
+            ViewData["list"] = "";
+            ViewData["listdata"] = list;
             return View();
         }
 
@@ -27,7 +39,9 @@ namespace Cshape_MVC_sample.Controllers
             ViewData["name"] = name;
             ViewData["mail"] = mail;
             ViewData["prof"] = prof;
-            ViewData["Message"] = msg + "," + ViewData["name"] + "," + ViewData["mail"] + "," + ViewData["prof"];
+            ViewData["list"] = Request.Form["list"];
+            ViewData["listdata"] = list;
+            ViewData["Message"] = msg + "," + ViewData["name"] + "," + ViewData["mail"] + "," + ViewData["prof"] + "," + Request.Form["list"] + " Selected.";
             return View("Index");
         }
     }
